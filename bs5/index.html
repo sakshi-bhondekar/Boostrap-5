@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
     <style>
         .mainSlider .carousel-item img {
             object-fit: cover;
@@ -16,142 +16,446 @@
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Nav::Start -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar scroll</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+<!-- Nav::Start -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar scroll</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse flex-grow-0" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Link
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Link</a>
-                    </li>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Link
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Link</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!-- Nav::End -->
+<!-- Slider::Start -->
+<div id="carouselExampleIndicators" class="carousel slide mainSlider" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- Slider::End -->
+<!-- Section - About Us ::Start -->
+<div class="container">
+    <div class="text-center">
+        <h2 class="text-secondary display-3 my-5">About Us</h2>
+    </div>
+    <div class="row text-center m-5">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5">
+            <img src="assets/img/img-about-us.png" class="rounded" alt="...">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5 text-start">
+            <h4 class="text-secondary display-6 my-2">We are professional at .. </h4>
+            <p class="text-secondary lh-lg fw-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui molestiae velit fugiat illum sit molestias nihil est veniam quam optio? Aspernatur natus quidem impedit distinctio! Dolorum voluptas accusantium sapiente numquam?</p>
+        </div>
+    </div>
+</div>
+<!-- Section - About Us ::End -->
+<!--    Section  - Review Page ::Start -->
+<div class="container">
+    <div class="text-center">
+        <h2 class="text-secondary display-3 my-5">Review</h2>
+    </div>
+    <div class="row gx-5">
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top rounded-circle p-4" src="https://via.placeholder.com/500x500.png" alt="Reviewer 2">
+                <div class="card-body">
+                    <h5 class="card-title text-secondary display-6 my-1">Reviewer 1</h5>
+                    <p class="card-text-sm-start lh-lg fw-light">Nullam sagittis sapien sed consequat dignissim. Integer nec risus metus. Nulla facilisi. Nullam id dapibus tellus.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top rounded-circle p-4" src="https://via.placeholder.com/500x500.png" alt="Reviewer 2">
+                <div class="card-body">
+                    <h5 class="card-title text-secondary display-6 my-1">Reviewer 2</h5>
+                    <p class="card-text-sm-start lh-lg fw-light">Nullam sagittis sapien sed consequat dignissim. Integer nec risus metus. Nulla facilisi. Nullam id dapibus tellus.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top rounded-circle p-4" src="https://via.placeholder.com/500x500.png" alt="Reviewer 2">
+                <div class="card-body">
+                    <h5 class="card-title text-secondary display-6 my-1">Reviewer 3</h5>
+                    <p class="card-text-sm-start lh-lg fw-light">Nullam sagittis sapien sed consequat dignissim. Integer nec risus metus. Nulla facilisi. Nullam id dapibus tellus.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top rounded-circle p-4" src="https://via.placeholder.com/500x500.png" alt="Reviewer 2">
+                <div class="card-body">
+                    <h5 class="card-title text-secondary display-6 my-1">Reviewer 4</h5>
+                    <p class="card-text-sm-start lh-lg fw-light">Nullam sagittis sapien sed consequat dignissim. Integer nec risus metus. Nulla facilisi. Nullam id dapibus tellus.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--    Section  - Review Page ::End -->
+<!--   Privacy Policy ::Start-->
+<section>
+    <div class="container">
+        <div class="text-center">
+            <h2 class="text-secondary display-3 my-5">Privacy Policy</h2>
+            <div class="card p-4">
+                <div class="col-md-12 pb-5">
+                    <p class="text-sm-start lh-lg fw-light">Our company is committed to protecting the privacy of our users. We will only collect personal information that is necessary for providing our services and will never share or sell your information to third parties.</p>
+                    <h2 class="text-md-start display-6 my-2 fs-2">What information do we collect?</h2>
+                    <p class="text-sm-start lh-lg fw-light">We may collect personal information such as your name, email address, and phone number when you create an account or sign up for our newsletter. We may also collect information about your use of our website or services through cookies or other tracking technologies.</p>
+                    <h2 class="text-md-start display-6 my-2 fs-2">How do we use your information?</h2>
+                    <p class="text-sm-start lh-lg fw-light">We may use your information to provide you with personalized content and offers, to improve our services, and to communicate with you about updates or changes to our policies. We may also use your information for research and analytics purposes to better understand our users and improve our services.</p>
+                    <h2 class="text-md-start display-6 my-2 fs-2">How do we protect your information?</h2>
+                    <p class="text-sm-start lh-lg fw-light">We have implemented security measures to protect your personal information from unauthorized access or disclosure. We also regularly review and update our security practices to ensure the highest level of protection. However, no security measures are foolproof, and we cannot guarantee the security of your information.</p>
+                    <h2 class="text-md-start display-6 my-2 fs-2">Sharing of information</h2>
+                    <p class="text-sm-start lh-lg fw-light">We will not share your personal information with third parties except as necessary to provide our services or as required by law. We may share your information with service providers or business partners who assist us in providing our services.</p>
+                    <h2 class="text-md-start display-6 my-2 fs-2">Changes to our policy</h2>
+                    <p class="text-sm-start lh-lg fw-light">We may update our policy from time to time to reflect changes in our services or legal requirements. We will notify you of any significant changes to our policy.</p>
+                    <div class="d-grid gap-2 d-md-block ">
+                        <button class="btn btn-primary" type="button">Accept</button>
+                        <button class="btn btn-primary" type="button">Decline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--   Privacy Policy ::End-->
+
+
+<div class="p-5">
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+        <td>Edinburgh</td>
+        <td>61</td>
+        <td>2011-04-25</td>
+        <td>$320,800</td>
+    </tr>
+    <tr>
+        <td>Garrett Winters</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>63</td>
+        <td>2011-07-25</td>
+        <td>$170,750</td>
+    </tr>
+    <tr>
+        <td>Ashton Cox</td>
+        <td>Junior Technical Author</td>
+        <td>San Francisco</td>
+        <td>66</td>
+        <td>2009-01-12</td>
+        <td>$86,000</td>
+    </tr>
+    <tr>
+        <td>Cedric Kelly</td>
+        <td>Senior Javascript Developer</td>
+        <td>Edinburgh</td>
+        <td>22</td>
+        <td>2012-03-29</td>
+        <td>$433,060</td>
+    </tr>
+    <tr>
+        <td>Airi Satou</td>
+        <td>Accountant</td>
+        <td>Tokyo</td>
+        <td>33</td>
+        <td>2008-11-28</td>
+        <td>$162,700</td>
+    </tr>
+    <tr>
+        <td>Brielle Williamson</td>
+        <td>Integration Specialist</td>
+        <td>New York</td>
+        <td>61</td>
+        <td>2012-12-02</td>
+        <td>$372,000</td>
+    </tr>
+    <tr>
+        <td>Herrod Chandler</td>
+        <td>Sales Assistant</td>
+        <td>San Francisco</td>
+        <td>59</td>
+        <td>2012-08-06</td>
+        <td>$137,500</td>
+    </tr>
+    <tr>
+        <td>Rhona Davidson</td>
+        <td>Integration Specialist</td>
+        <td>Tokyo</td>
+        <td>55</td>
+        <td>2010-10-14</td>
+        <td>$327,900</td>
+    </tr>
+    <tr>
+        <td>Colleen Hurst</td>
+        <td>Javascript Developer</td>
+        <td>San Francisco</td>
+        <td>39</td>
+        <td>2009-09-15</td>
+        <td>$205,500</td>
+    </tr>
+    <tr>
+        <td>Sonya Frost</td>
+        <td>Software Engineer</td>
+        <td>Edinburgh</td>
+        <td>23</td>
+        <td>2008-12-13</td>
+        <td>$103,600</td>
+    </tr>
+    <tr>
+        <td>Jena Gaines</td>
+        <td>Office Manager</td>
+        <td>London</td>
+        <td>30</td>
+        <td>2008-12-19</td>
+        <td>$90,560</td>
+    </tr>
+    <tr>
+        <td>Quinn Flynn</td>
+        <td>Support Lead</td>
+        <td>Edinburgh</td>
+        <td>22</td>
+        <td>2013-03-03</td>
+        <td>$342,000</td>
+    </tr>
+    <tr>
+        <td>Charde Marshall</td>
+        <td>Regional Director</td>
+        <td>San Francisco</td>
+        <td>36</td>
+        <td>2008-10-16</td>
+        <td>$470,600</td>
+    </tr>
+    <tr>
+        <td>Haley Kennedy</td>
+        <td>Senior Marketing Designer</td>
+        <td>London</td>
+        <td>43</td>
+        <td>2012-12-18</td>
+        <td>$313,500</td>
+    </tr>
+    <tr>
+        <td>Tatyana Fitzpatrick</td>
+        <td>Regional Director</td>
+        <td>London</td>
+        <td>19</td>
+        <td>2010-03-17</td>
+        <td>$385,750</td>
+    </tr>
+    <tr>
+        <td>Michael Silva</td>
+        <td>Marketing Designer</td>
+        <td>London</td>
+        <td>66</td>
+        <td>2012-11-27</td>
+        <td>$198,500</td>
+    </tr>
+    <tr>
+        <td>Paul Byrd</td>
+        <td>Chief Financial Officer (CFO)</td>
+        <td>New York</td>
+        <td>64</td>
+        <td>2010-06-09</td>
+        <td>$725,000</td>
+    </tr>
+    <tr>
+        <td>Gloria Little</td>
+        <td>Systems Administrator</td>
+        <td>New York</td>
+        <td>59</td>
+        <td>2009-04-10</td>
+        <td>$237,500</td>
+    </tr>
+    <tr>
+        <td>Bradley Greer</td>
+        <td>Software Engineer</td>
+        <td>London</td>
+        <td>41</td>
+        <td>2012-10-13</td>
+        <td>$132,000</td>
+    </tr>
+    <tr>
+        <td>Dai Rios</td>
+        <td>Personnel Lead</td>
+        <td>Edinburgh</td>
+        <td>35</td>
+        <td>2012-09-26</td>
+        <td>$217,500</td>
+    </tr>
+    <tr>
+        <td>Jenette Caldwell</td>
+        <td>Development Lead</td>
+        <td>New York</td>
+        <td>30</td>
+        <td>2011-09-03</td>
+        <td>$345,000</td>
+    </tr>
+    <tr>
+        <td>Donna Snider</td>
+        <td>Customer Support</td>
+        <td>New York</td>
+        <td>27</td>
+        <td>2011-01-25</td>
+        <td>$112,000</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Office</th>
+        <th>Age</th>
+        <th>Start date</th>
+        <th>Salary</th>
+    </tr>
+    </tfoot>
+</table>
+</div>
+
+<!--   Contact Us Page ::Start-->
+<div class="container mt-5">
+    <footer class="py-5">
+        <div class="row">
+            <div class="col-2">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+            </div>
+
+            <div class="col-2">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                </ul>
+            </div>
+
+            <div class="col-2">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                </ul>
+            </div>
+
+            <div class="col-4 offset-1">
+                <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of whats new and exciting from us.</p>
+                    <div class="d-flex w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email address</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
                 </form>
             </div>
         </div>
-    </nav>
-    <!-- Nav::End -->
 
-    <!-- Slider::Start -->
-    <div id="carouselExampleIndicators" class="carousel slide mainSlider" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+        <div class="d-flex justify-content-between py-4 my-4 border-top">
+            <p>© 2021 Company, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+            </ul>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://via.placeholder.com/1920x1080.png" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <!-- Slider::End -->
+    </footer>
+</div>
 
-    <!-- Section - About Us ::Start -->
-    <div class="container">
-        <div class="text-center">
-            <h2 class="text-secondary display-3 my-5">About Us</h2>
-        </div>
-        <div class="row text-center m-5">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5">
-                <img src="assets/img/img-about-us.png" class="rounded" alt="...">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-5 text-start">
-                <h4 class="text-secondary display-6 my-2">We are professional at .. </h4>
-                <p class="text-secondary lh-lg fw-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui molestiae velit fugiat illum sit molestias nihil est veniam quam optio? Aspernatur natus quidem impedit distinctio! Dolorum voluptas accusantium sapiente numquam?</p>
-            </div>
-          </div>
-    </div>
-    <!-- Section - About Us ::End -->
-<!--    Section  - Review Page ::Start -->
-    <div class="container">
-        <div class="text-center">
-            <h2 class="text-secondary display-3 my-5">Review</h2>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top rounded-circle" src="https://via.placeholder.com/3.png" alt="Reviewer 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Reviewer 1</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis dui non suscipit volutpat. In hac habitasse platea dictumst.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top rounded-circle" src="https://via.placeholder.com/3.png" alt="Reviewer 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Reviewer 2</h5>
-                        <p class="card-text">Nullam sagittis sapien sed consequat dignissim. Integer nec risus metus. Nulla facilisi. Nullam id dapibus tellus.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top rounded-circle" src="https://via.placeholder.com/2.png" alt="Reviewer 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Reviewer 3</h5>
-                        <p class="card-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Ut bibendum venenatis lorem, non fringilla est fringilla a.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!--    Section  - Review Page ::End -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+<!--  Contact Us Page ::End -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+<script src="index.js">
+</script>
 </body>
-
 </html>
