@@ -8,7 +8,9 @@
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <style>
+
         .mainSlider .carousel-item img {
             object-fit: cover;
             object-position: center;

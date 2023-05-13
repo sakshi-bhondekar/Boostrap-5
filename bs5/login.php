@@ -14,8 +14,18 @@ include_once ("includes/navbar.php");
                     <div
                         class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start my-5">
                         <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                        <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"><i
-                                class="fab fa-facebook-f"></i></a>
+                        <!-- Facebook -->
+                       <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
+                       <i class="fab fa-facebook-f"></i>
+                       </a>
+
+                        <!-- Google -->
+                        <a class="btn btn-primary mx-2" style="background-color: #dd4b39;" href="#!" role="button" >
+                        <i class="fab fa-google"></i></a>
+
+                        <!-- Linkedin -->
+                        <a class="btn btn-primary mx-2" style="background-color: #0082ca;" href="#!" role="button" >
+                        <i class="fab fa-linkedin-in"></i></a>
                     </div>
 
                     <div class="divider d-flex align-items-center my-4">
@@ -50,8 +60,8 @@ include_once ("includes/navbar.php");
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <button type="button" class="btn btn-primary btn-lg"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                                class="link-danger">Register</a></p>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
+                                class="link-danger active" href="register.php">Register</a></p>
                     </div>
 
                 </form>
