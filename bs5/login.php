@@ -54,7 +54,7 @@ include_once ("includes/navbar.php");
                                 Remember me
                             </label>
                         </div>
-                        <a href="#!" class="text-body">Forgot password?</a>
+                        <a class="text-body active" href="forget-password.php">Forgot password?</a>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
