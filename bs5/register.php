@@ -2,7 +2,7 @@
 <?php
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
-
+$save_data_in_db = false;
 
 if(ISSET($_GET["user_name"]) && ISSET($_GET["user_email"]) && ISSET($_GET["user_password"]) && ISSET($_GET["cnf_user_password"])){
 $user_name = $_GET["user_name"];
@@ -12,8 +12,40 @@ $cnf_user_password = $_GET["cnf_user_password"];
 
   if ($user_password != $cnf_user_password){
     echo "Please input the same password";
+  }else{
+    $save_data_in_db = true;
   }
-  
+
+  if($save_data_in_db){
+    
+    // Database Connection Code :: Start
+    try{
+      $connection = new PDO("mysql:host=localhost;dbname=bs5", 'admin', 'admin');
+      $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      
+      // echo "Connection successfully established";
+    
+    }catch(PDOException $ex_msg){
+      echo "Error: ". $ex_msg->getMessage();
+    }
+    // Database Connection Code :: End
+
+    // Code Block Starts to Submit data to db :: Start
+    $sth = $connection->prepare("INSERT INTO users (user_name, user_email, user_password) VALUES (:db_user_name, :db_user_email, :db_user_password)");
+
+    $sth->bindParam(':db_user_name', $user_name);
+    $sth->bindParam(':db_user_email', $user_email);
+    $sth->bindParam(':db_user_password', $user_password);
+
+    if($sth->execute()){
+    echo "Data Inserted";	
+    }else{
+      echo "Something Went Wrong!";
+    }
+    // Code Block Starts to Submit data to db :: End
+
+  }
+
 }
 
 ?>
