@@ -5,22 +5,30 @@ include_once ("includes/navbar.php");
 
 <div class="container">
     <h2>User Profile</h2>
-    <div class="row">
+    <div class="row m-5">
       <div class="col-md-6">
         <form id="profileForm" method="POST">
-          <div class="form-group">
+          <div class="form-group m-3">
             <label for="fullName">Full Name:</label>
             <input type="text" class="form-control" id="fullName" name="fullName" required>
           </div>
-          <div class="form-group">
+          <div class="form-group m-3">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" name="email" readonly>
           </div>
-          <div class="form-group">
+          <div class="form-group m-3">
+            <label for="mobileNumber">Mobile Number:</label>
+            <input type="mobileNumber" class="form-control" id="mobileNumber" mobileNumber="mobileNumber" required>
+          </div>
+          <div class="form-group m-3">
+             <label for="address">Address:</label>
+             <input type="text" class="form-control" id="address" name="address" required>
+          </div>
+          <div class="form-group m-3">
             <label for="password">Password:</label>
             <input type="password" class="form-control" id="password" name="password" readonly>
           </div>
-          <button type="submit" class="btn btn-primary">Save Profile</button>
+          <button type="submit" class="btn btn-primary mx-3">Save Profile</button>
         </form>
       </div>
     </div>
