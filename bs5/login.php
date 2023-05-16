@@ -15,9 +15,11 @@ include_once ("includes/navbar.php");
                         class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start my-5">
                         <p class="lead fw-normal mb-0 me-3">Sign in with</p>
                         <!-- Facebook -->
-                       <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
-                       <i class="fab fa-facebook-f"></i>
-                       </a>
+                        <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
+                        <i class="fab fa-facebook-f"></i>
+
+
+                         </a>
 
                         <!-- Google -->
                         <a class="btn btn-primary mx-2" style="background-color: #dd4b39;" href="#!" role="button" >

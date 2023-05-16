@@ -57,7 +57,7 @@ include_once ("includes/navbar.php");
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 my-1 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                    <button type="button active" class="btn btn-primary btn-lg" href="profile.php">Register</button>
                   </div>
 
                 </form>
