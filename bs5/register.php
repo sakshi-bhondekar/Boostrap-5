@@ -3,6 +3,8 @@
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
 $save_data_in_db = false;
+$user_verification_process = false;
+$otp = rand(0001,9999);
 
 if(ISSET($_GET["user_name"]) && ISSET($_GET["user_email"]) && ISSET($_GET["user_password"]) && ISSET($_GET["cnf_user_password"])){
 $user_name = $_GET["user_name"];
@@ -38,9 +40,25 @@ $cnf_user_password = $_GET["cnf_user_password"];
     $sth->bindParam(':db_user_password', $user_password);
 
     if($sth->execute()){
-    echo "Data Inserted";	
+    // echo "Data Inserted";	
+    $user_verification_process = true;
     }else{
       echo "Something Went Wrong!";
+    }
+
+    if($user_verification_process){
+      /*
+      (`id`, `email`, `otp`, `verification_starts`, `verification_expires`, `is_verified`)
+      VALUES
+      ('1', 'hu@dfd.dfd', '1234', '2023-05-17 10:24:17.000000', '2023-05-17 10:24:17.000000', '0')
+      */
+
+      $sth = $connection->prepare("INSERT INTO user_verification (user_name, user_email, user_password) VALUES (:db_user_name, :db_user_email, :db_user_password)");
+
+      $sth->bindParam(':db_user_name', $user_name);
+      $sth->bindParam(':db_user_email', $user_email);
+      $sth->bindParam(':db_user_password', $user_password);
+
     }
     // Code Block Starts to Submit data to db :: End
 
