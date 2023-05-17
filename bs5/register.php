@@ -1,10 +1,17 @@
-
 <?php
+date_default_timezone_set("Asia/Kolkata");
+
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
 $save_data_in_db = false;
+
 $user_verification_process = false;
 $otp = rand(0001,9999);
+$expires_in = 5*60; // 300 Sec.
+$current_time = time(); // INT
+$verification_starts = date('Y-m-d H:i:s', $current_time); // STRING -> DATETIME
+$verification_expires = date('Y-m-d H:i:s', ($current_time + $expires_in)); // STRING -> DATETIME + 300 Sec.
+
 
 if(ISSET($_GET["user_name"]) && ISSET($_GET["user_email"]) && ISSET($_GET["user_password"]) && ISSET($_GET["cnf_user_password"])){
 $user_name = $_GET["user_name"];
@@ -47,18 +54,22 @@ $cnf_user_password = $_GET["cnf_user_password"];
     }
 
     if($user_verification_process){
-      /*
-      (`id`, `email`, `otp`, `verification_starts`, `verification_expires`, `is_verified`)
-      VALUES
-      ('1', 'hu@dfd.dfd', '1234', '2023-05-17 10:24:17.000000', '2023-05-17 10:24:17.000000', '0')
-      */
 
-      $sth = $connection->prepare("INSERT INTO user_verification (user_name, user_email, user_password) VALUES (:db_user_name, :db_user_email, :db_user_password)");
+      $sth = $connection->prepare("INSERT INTO user_verification (email, otp, verification_starts, verification_expires) VALUES (:db_email, :db_otp, :db_verification_starts, :db_verification_expires)");
 
-      $sth->bindParam(':db_user_name', $user_name);
-      $sth->bindParam(':db_user_email', $user_email);
-      $sth->bindParam(':db_user_password', $user_password);
+      $sth->bindParam(':db_email', $user_email);
+      $sth->bindParam(':db_otp', $otp);
+      $sth->bindParam(':db_verification_starts', $verification_starts);
+      $sth->bindParam(':db_verification_expires', $verification_expires);
 
+      if($sth->execute()){
+        echo "OTP sent to your email, Kindly enter the same to verify your profile";	
+      }else{
+        echo "Something Went Wrong!";
+      }
+
+    }else{
+      echo "Something Went Wrong!";
     }
     // Code Block Starts to Submit data to db :: End
 
