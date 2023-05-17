@@ -32,8 +32,9 @@ include_once ("includes/navbar.php");
                       
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button active" class="btn btn-primary btn-sm+"  href="mail-otp.php"
-                            style="padding-left: 2.5rem; padding-right: 2.5rem;" href="mail-otp.php">Forgot Password</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Forgot Password</button>
+                        <!-- <button type="button active" class="btn btn-primary btn-sm+"  href="mail-otp.php"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;" href="mail-otp.php">Forgot Password</button> -->
                         <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
                                 class="link-danger active" href="register.php">Register</a> | <a
                                 class="link-danger active" href="login.php">Login</a></p>
