@@ -10,24 +10,22 @@ include_once ("includes/navbar.php");
                     class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <form>
+                <form action="check-login.php" method="POST">
                     <div
                         class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start my-5">
                         <p class="lead fw-normal mb-0 me-3">Sign in with</p>
                         <!-- Facebook -->
                         <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button">
-                        <i class="fab fa-facebook-f"></i>
-
-
-                         </a>
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
 
                         <!-- Google -->
-                        <a class="btn btn-primary mx-2" style="background-color: #dd4b39;" href="#!" role="button" >
-                        <i class="fab fa-google"></i></a>
+                        <a class="btn btn-primary mx-2" style="background-color: #dd4b39;" href="#!" role="button">
+                            <i class="fab fa-google"></i></a>
 
                         <!-- Linkedin -->
-                        <a class="btn btn-primary mx-2" style="background-color: #0082ca;" href="#!" role="button" >
-                        <i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-primary mx-2" style="background-color: #0082ca;" href="#!" role="button">
+                            <i class="fab fa-linkedin-in"></i></a>
                     </div>
 
                     <div class="divider d-flex align-items-center my-4">
@@ -37,14 +35,14 @@ include_once ("includes/navbar.php");
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <input type="email" id="form3Example3" class="form-control form-control-lg"
-                            placeholder="Enter a valid email address" />
+                            placeholder="Enter a valid email address" name="auth_email" />
                         <label class="form-label" for="form3Example3">Email address</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         <input type="password" id="form3Example4" class="form-control form-control-lg"
-                            placeholder="Enter password" />
+                            placeholder="Enter password" name="auth_password" />
                         <label class="form-label" for="form3Example4">Password</label>
                     </div>
 
@@ -56,14 +54,14 @@ include_once ("includes/navbar.php");
                                 Remember me
                             </label>
                         </div>
-                        <a class="text-body active" href="forget-password.php">Forgot password?</a>
+                        <button class="text-body" href="forget-password.php">Forgot password?</button>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <button type="button active" class="btn btn-primary btn-lg"
-                            style="padding-left: 2.5rem; padding-right: 2.5rem;" href="profile.php">Login</button>
-                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
-                                class="link-danger active" href="register.php">Register</a></p>
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a class="link-danger active"
+                                href="register.php">Register</a></p>
                     </div>
 
                 </form>
