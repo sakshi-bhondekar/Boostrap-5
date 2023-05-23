@@ -2,77 +2,28 @@
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
 ?>
-
-<div class="container">
-    <h2>User Profile</h2>
-    <div class="row m-5">
-      <div class="col-md-6">
-        <form id="profileForm" method="POST">
-          <div class="form-group m-3">
-            <label for="fullName">Full Name:</label>
-            <input type="text" class="form-control" id="fullName" name="fullName" required>
+<section>
+<div class="container mt-4">
+  <h2>User Profile</h2>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card">
+          <!-- <img class="card-img-top" src="profile_photo.jpg" alt="Profile Photo"> -->
+          <img class="card-img-top rounded-circle p-5" src="https://via.placeholder.com/300x300.jpg" alt=""Profile Photo">
+          <div class="card-body">
+            <h5 class="card-title">John Doe</h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+            <a href="#" class="btn btn-danger">Delete</a>
           </div>
-          <div class="form-group m-3">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" readonly>
-          </div>
-          <div class="form-group m-3">
-            <label for="mobileNumber">Mobile Number:</label>
-            <input type="mobileNumber" class="form-control" id="mobileNumber" mobileNumber="mobileNumber" required>
-          </div>
-          <div class="form-group m-3">
-             <label for="address">Address:</label>
-             <input type="text" class="form-control" id="address" name="address" required>
-          </div>
-          <div class="form-group m-3">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" readonly>
-          </div>
-          <button type="submit" class="btn btn-primary mx-3">Save Profile</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-  <script>
-     $(document).ready(function () {
-        // Populate the form with user data
-        var userData = {
-          fullName: 'John Doe', // Replace with user's full name retrieved from the server
-          email: 'johndoe@example.com', // Replace with user's email retrieved from the server
-          password: '********' // Replace with user's password retrieved from the server
-        };
+</section>
 
-        $('#fullName').val(userData.fullName);
-        $('#email').val(userData.email);
-        $('#password').val(userData.password);
 
-        $('#profileForm').submit(function (event) {
-          event.preventDefault(); // Prevent form submission
-
-           // Get the updated values from the form
-                  var updatedFullName = $('#fullName').val();
-
-                  // Send an AJAX request to the server to update the profile
-                  $.ajax({
-                    url: '/update-profile', // Replace with your server endpoint that handles profile updates
-                    method: 'POST',
-                    data: {
-                      fullName: updatedFullName
-                    },
-                    success: function (response) {
-                      // Handle success response
-                      alert('Profile updated successfully!');
-                    },
-                    error: function (xhr, status, error) {
-                      // Handle error response
-                      alert('Failed to update profile. Please try again later.');
-                    }
-                  });
-                });
-              });
-  </script>
-
-  <?php
-  include_once ("includes/footer.php");
-  include_once ("includes/end.php");
-  ?>
+<?php
+include_once ("includes/footer.php");
+include_once ("includes/end.php");
+?>
