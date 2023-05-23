@@ -16,3 +16,5 @@ $sql_query = ("DELETE FROM users WHERE user_email = '{$_GET["email"]}' ");
 $connection->exec($sql_query);
 
 echo "Record Deleted";
+
+header("Location: log-out.php");
