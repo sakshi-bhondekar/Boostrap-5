@@ -26,6 +26,7 @@ $count = $sth->rowCount();
 
 if($count > 0){
     $_SESSION["auth_status"] = true;
+    $_SESSION["user_profile"] = $sth->fetch();
     header("Location: activity.php");
 }else{
     $_SESSION["auth_status"] = false;
