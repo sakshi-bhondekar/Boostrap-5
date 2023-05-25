@@ -1,6 +1,50 @@
 <?php
 date_default_timezone_set("Asia/Kolkata");
 
+$validate_db_level = false;
+$dt = date('Y-m-d H:i:s', time());
+$process_verification = false;
+
+if(!ISSET($_COOKIE["token"])){
+  header("HTTP/1.1 403 Forbidden");
+  echo '<center style="color:red;">Forbidden</center>';
+  header("refresh:5; url=login.php");
+  exit();
+}else{
+  $validate_db_level = true;
+}
+
+if($validate_db_level){
+  // Database Connection Code :: Start
+  try{
+    $connection = new PDO("mysql:host=localhost;dbname=bs5", 'admin', 'admin');
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // echo "Connection successfully established";
+  
+  }catch(PDOException $ex_msg){
+    echo "Error: ". $ex_msg->getMessage();
+  }
+  // Database Connection Code :: End
+
+  $sth = $connection->prepare("SELECT * FROM `user_verification` WHERE `token` = '{$_COOKIE['token']}' AND `verification_expires` >= '{$dt}' AND is_verified = 0");
+  $sth->setFetchMode(PDO:: FETCH_OBJ);
+  $sth->execute();
+  $count = $sth->rowCount();
+
+  if($count != 1){
+    header("HTTP/1.1 403 Forbidden");
+    echo '<center style="color:red;">Token Expired</center>';
+    exit();
+  }else{
+    $process_verification = true;
+  } // Nested IF Block Ends Here
+
+}else{
+  echo '<center style="color:red;">Unknown Error!</center>';
+  exit();
+} // Main IF Block Ends Here
+
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
 ?>
@@ -16,7 +60,10 @@ include_once ("includes/navbar.php");
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Verify Profile</p>
 
-                 <form class="mx-1 mx-md-4">
+                <?php 
+                if($process_verification){
+                  echo '
+                  <form class="mx-1 mx-md-4">
                  <!-- <form action="register.php" class="mx-1 mx-md-4"> -->
 
               
@@ -55,17 +102,20 @@ include_once ("includes/navbar.php");
                   <div class=" text-lg-start mt-4 pt-2">
                         <!-- <button type="button active" class="btn btn-primary btn-lg"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;" href="profile.php">Login</button> -->
-                        <p class="small fw-bold mt-2 pt-1 mb-0 text-center">Didn't Receive OTP ? <a
+                        <p class="small fw-bold mt-2 pt-1 mb-0 text-center">Did not Receive OTP ? <a
                                 class="link-danger active" href="#">Resend OTP</a></p>
                     </div>
                   
                 </form>
-
+                  ';
+                }else{
+                  echo '<center style="color:red;">Error!</center>';
+                }
+                ?>
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="assets/img/img2.webp"
-                  class="img-fluid" alt="Sample image">
+                <img src="assets/img/img2.webp" class="img-fluid" alt="Sample image">
 
               </div>
             </div>
