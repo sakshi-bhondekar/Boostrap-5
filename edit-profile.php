@@ -26,7 +26,7 @@ $user_name = $_GET["up_user_name"];
 $user_email = $_GET["up_user_email"];
 
 
-$sth = $connection->prepare("UPDATE `users` SET `user_name`=:db_user_name, `user_email`=:db_user_email WHERE `user_email`= '{$user_email}'");
+$sth = $connection->prepare("UPDATE `users` SET `user_name`=:db_user_name, `user_email`=:db_user_email WHERE `user_email`= '{$user_profile->user_email}'");
 
 $sth->bindParam(":db_user_name", $user_name);
 $sth->bindParam(":db_user_email", $user_email);

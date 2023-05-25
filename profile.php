@@ -10,7 +10,7 @@ include_once ("includes/navbar.php");
       <div class="col-lg-3">
         <div class="card">
           <!-- <img class="card-img-top" src="profile_photo.jpg" alt="Profile Photo"> -->
-          <img class="card-img-top rounded-circle p-5" src="https://via.placeholder.com/300x300.jpg" alt=""Profile Photo">
+          <img class="card-img-top rounded-circle p-5" src="https://via.placeholder.com/300x300.jpg" alt="Profile Photo">
           <div class="card-body">
             <h5 class="card-title"><?= $user_profile->user_name ?></h5>
             <p class="card-text"><?= $user_profile->user_email ?></p>
