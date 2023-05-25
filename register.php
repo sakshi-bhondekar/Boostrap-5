@@ -12,6 +12,7 @@ $current_time = time(); // INT
 $verification_starts = date('Y-m-d H:i:s', $current_time); // STRING -> DATETIME
 $verification_expires = date('Y-m-d H:i:s', ($current_time + $expires_in)); // STRING -> DATETIME + 300 Sec.
 
+$token = md5(time());
 
 if(ISSET($_GET["user_name"]) && ISSET($_GET["user_email"]) && ISSET($_GET["user_password"]) && ISSET($_GET["cnf_user_password"])){
 $user_name = $_GET["user_name"];
@@ -55,15 +56,18 @@ $cnf_user_password = $_GET["cnf_user_password"];
 
     if($user_verification_process){
 
-      $sth = $connection->prepare("INSERT INTO user_verification (email, otp, verification_starts, verification_expires) VALUES (:db_email, :db_otp, :db_verification_starts, :db_verification_expires)");
+      $sth = $connection->prepare("INSERT INTO user_verification (token, email, otp, verification_starts, verification_expires) VALUES (:db_token, :db_email, :db_otp, :db_verification_starts, :db_verification_expires)");
 
+      $sth->bindParam(':db_token', $token);
       $sth->bindParam(':db_email', $user_email);
       $sth->bindParam(':db_otp', $otp);
       $sth->bindParam(':db_verification_starts', $verification_starts);
       $sth->bindParam(':db_verification_expires', $verification_expires);
 
       if($sth->execute()){
-        echo "OTP sent to your email, Kindly enter the same to verify your profile";	
+        echo '<center style="color:red;">OTP sent to your email, Kindly enter the same to verify your profile</center>';
+        setcookie("token", $token);
+        header("refresh:5; url=verify-profile.php");
       }else{
         echo "Something Went Wrong!";
       }
