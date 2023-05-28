@@ -4,6 +4,9 @@ date_default_timezone_set("Asia/Kolkata");
 $validate_db_level = false;
 $dt = date('Y-m-d H:i:s', time());
 $process_verification = false;
+$check_user_exists = false;
+$otp_matched = false;
+$is_verified = 0;
 
 if(!ISSET($_COOKIE["token"])){
   header("HTTP/1.1 403 Forbidden");
@@ -38,12 +41,88 @@ if($validate_db_level){
     exit();
   }else{
     $process_verification = true;
+
+    $sth1 = $connection->prepare("SELECT * FROM `user_verification` WHERE `token` = '{$_COOKIE['token']}'");
+    $sth1->setFetchMode(PDO:: FETCH_OBJ);
+    $sth1->execute();
+    $data = $sth1->fetch();
+
+    $db_email = $data->email;
+    $db_verification_expires = $data->verification_expires;
+    $db_otp = $data->otp;
+
+    $sth2 = $connection->prepare("SELECT * FROM `users` WHERE `user_email` = '{$db_email}' AND is_verified = 0");
+    $sth2->setFetchMode(PDO:: FETCH_OBJ);
+    $sth2->execute();
+    $count2 = $sth2->rowCount();
+
+    if($count2 == 1){
+      $check_user_exists = true;
+    }else{
+      $check_user_exists = false;
+    }
+
   } // Nested IF Block Ends Here
 
 }else{
   echo '<center style="color:red;">Unknown Error!</center>';
   exit();
 } // Main IF Block Ends Here
+
+
+if(!$check_user_exists){
+    header("HTTP/1.1 403 Forbidden");
+    echo '<center style="color:red;">User Does not Exists</center>';
+    exit();
+}else{
+
+  if(ISSET($_GET["submit"])){
+  $input_otp = $_GET["otp"];
+
+  if($input_otp == $db_otp){
+    $otp_matched = true;
+    $is_verified = 1;
+  }else{
+    header("HTTP/1.1 403 Forbidden");
+    echo '<center style="color:red;">OTP Does not Matched</center>';
+    exit();
+  }
+
+  if($otp_matched){
+
+    $sth = $connection->prepare("UPDATE `users` SET `is_verified`=:db_is_verified WHERE `user_email`= '{$db_email}'");
+
+    $sth->bindParam(":db_is_verified", $is_verified);
+
+    $sth->execute();
+
+    $countUpdates = $sth->rowCount();
+
+    if ($countUpdates == 1) {
+
+      $sql_query = ("DELETE FROM `user_verification` WHERE email = '{$db_email}'");
+      $connection->exec($sql_query);
+
+    echo '<center style="color:green;">Profile Updated</center>';
+    header("refresh:5; url=login.php");
+
+    } else if($countUpdates == 0){
+
+    echo '<center style="color:blue;">Unable to verify profile due to no new data available to update</center>';
+    
+  } else {
+  
+    header("HTTP/1.1 403 Forbidden");
+    echo "Endpoint Failure";
+  
+    exit();
+    }
+
+  }
+
+}
+
+}
 
 include_once ("includes/head.php");
 include_once ("includes/navbar.php");
@@ -64,14 +143,14 @@ include_once ("includes/navbar.php");
                 if($process_verification){
                   echo '
                   <form class="mx-1 mx-md-4">
-                 <!-- <form action="register.php" class="mx-1 mx-md-4"> -->
+                 <!-- <form class="mx-1 mx-md-4"> -->
 
               
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" name="user_email"/>
+                      <input type="email" id="form3Example3c" class="form-control" name="user_email" value="'.$db_email.'" disabled/>
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -96,7 +175,7 @@ include_once ("includes/navbar.php");
                   -->
 
                   <div class="d-flex justify-content-center mx-4 my-1 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-primary btn-lg">Verify Profile</button>
+                    <button type="submit" class="btn btn-primary btn-lg" name="submit" value="verify">Verify Profile</button>
                   </div>
 
                   <div class=" text-lg-start mt-4 pt-2">
